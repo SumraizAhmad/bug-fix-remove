@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body id="mybody">
+
+<br>
+    <table border=1>
+        <tr>
+            <td>Biryani</td>
+            <td>150</td>
+            <td><input class="dish-item" type="checkbox" /></td>
+        </tr>
+        <tr>
+            <td>Shwarma</td>
+            <td>80</td>
+            <td><input class="dish-item" type="checkbox" /></td>
+        </tr>
+        <tr>
+            <td>Qorma</td>
+            <td>350</td>
+            <td><input class="dish-item" type="checkbox" /></td>
+        </tr>
+        <tr>
+            <td>Nihari</td>
+            <td>450</td>
+            <td><input class="dish-item" type="checkbox" /></td>
+        </tr>
+        <tr>
+            <td>white mutton karahi</td>
+            <td>1500</td>
+            <td><input class="dish-item" type="checkbox" /></td>
+        </tr>
+        <tr>
+            <td>Rognin Naan</td>
+            <td>30</td>
+            <td><input class="dish-item" type="checkbox" /></td>
+        </tr>
+        <tr>
+            <td>Raita+Salad</td>
+            <td>40</td>
+            <td><input class="dish-item" type="checkbox" /></td>
+        </tr>
+    </table>
+
+    <table border="1">
+        <tr>
+            <td>ADD GST</td>
+            <td> <input type="checkbox" id="gst" /> </td>
+        </tr>
+        <tr>
+            <td>Gross Bill</td>
+            <td id="totalBill"></td>
+        </tr>
+        <tr>
+            <td>Discount</td>
+            <td id="discountBill"></td>
+        </tr>
+        <tr>
+            <td>Net Bill</td>
+            <td id="netBill"></td>
+        </tr>
+    </table>
+
+    <button onclick="calculateBill()">Calculate Bill</button>
+
+
+
+    <!-- 
+    <ol>
+        <li class="punjab">FSD</li>
+        <li class="sindh">KHI</li>
+        <li id="test" class="punjab">LHR</li>
+        <li class="sindh">HYD</li>
+        <li class="sindh">SUK</li>
+    </ol> -->
+
+    <script>
+        function calculateBill() {
+
+            let allDishes = document.querySelectorAll('.dish-item');
+
+            let total = 0;
+
+            allDishes.forEach(function(inputTag) {
+
+                if (inputTag.checked) {
+
+                    total += +inputTag.parentNode.previousElementSibling.innerText;
+
+                    console.log(inputTag);
+                }
+
+            });
+
+            totalBill.innerText = total;
+
+            if (total > 700) {
+                netBill.innerText = total * .90;
+                discountBill.innerText = total * 0.10;
+            }
+
+            if (gst.checked) {
+                netBill.innerText = +netBill.innerText * 1.05;
+            }
+
+            console.log("i am chaling");
+
+        }
+
+        //API application programming interface
+        // ready make code, ready to use code
+
+        // let myTags = document.querySelectorAll('.punjab, .sindh');
+
+        // myTags.forEach(function(tag){
+
+        //     if(tag.className == "punjab"){
+        //         tag.style.color = "red";
+        //     }else{
+        //         tag.style.color = "blue";
+        //     }
+
+        // });
+
+
+
+        // some.onclick = function(evt){
+        //     alert('helo g');
+        // }
+
+        // let colors = ['yellow', 'green', 'magenta', 'red', 'blue', 'purple'];
+        // let cities = ['Faisalabad', 'Gojra', 'Gujrat', 'Toba', 'Multan', 'gujranwala'];
+
+        // let ol =  document.createElement('ol');
+        // mybody.appendChild(ol);
+
+        // cities.forEach(function(city, index){
+
+        //     let myTag = document.createElement('li');
+        //     myTag.innerText = city;
+
+        //     myTag.onclick = function(){
+        //          myTag.style.color = colors[index];
+        //     //     alert(city);
+        //     //    myTag.remove();
+        //     }
+
+        //     ol.appendChild(myTag)
+
+        // });
+
+
+
+        // DOM, document object model
+        // JS + HTML + CSS, (a combined toolset)
+
+
+        //    let fCities =  cities.filter(function(city){
+
+        //         if(city.length > 5){
+        //             return true;
+        //         }
+
+        //     });
+
+        //     console.log(fCities);
+
+        // let userCity = prompt("enter city");
+        // let fCities = filterCities(userCity); 
+        // console.log(fCities); 
+
+        function filterCities(letter) {
+
+            let fCities = cities.filter(function(city) {
+
+                if (city[0].toLowerCase() == letter.toLowerCase()) {
+                    return true;
+                }
+
+            });
+
+
+            return fCities;
+
+        }
+
+        // string
+        // koi bhi cheez ko quotes m wrap hojye
+
+        // "khurram"
+        // "khurram@panacloud.com"
+        // "0349-43543534"
+        // "@($(#$*(##"
+    </script>
+
+</body>
+
+</html>
